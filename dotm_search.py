@@ -7,6 +7,7 @@ within the 'word/document.xml' section of a MSWord .dotm file.
 import sys
 import os
 import docx2txt
+import argparse
 
 def read_file(file):
     """This function reads the file and returns the text"""
@@ -51,19 +52,17 @@ def search_text(dir, search_text):
 
 
 def main():
-    if len(sys.argv) != 4:
-        print 'usage: ./dotm_search.py {--dir} directory text'
-        sys.exit(1)
+    parser = argparse.ArgumentParser()
 
-    
+    parser.add_argument('--dir', help='Directory')
+    parser.add_argument('text_to_search', help='Search Text')
 
-    option = sys.argv[1]
-    directory = sys.argv[2]
-    text_to_search = sys.argv[3]
-    if option == '--dir':
-        search_text(directory, text_to_search)
+    args = parser.parse_args()
+
+    if args.dir:
+        search_text(args.dir, args.text_to_search)
     else:
-        print 'unknown option: ' + option
+        print 'unknown option'
         sys.exit(1)
 
 if __name__ == "__main__":
