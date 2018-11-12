@@ -39,10 +39,14 @@ def search_text(dir, search_text):
         tmp = text.split()
         text = ' '.join(tmp)
         index_of_char = text.find(search_text)
+
         print "Match found in file {}".format(file)
         print ' '
         print "Found Text: " + text[index_of_char-40:index_of_char] + text[index_of_char:index_of_char + 41]
         print '-------------------'
+
+    print "Total number of files searched: {}".format(len(dotm_files_list))
+    print "Total number of files with matching text: {}".format(len(files_with_search_text))
     
 
 
